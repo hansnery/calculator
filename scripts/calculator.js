@@ -41,11 +41,11 @@ function hitKey(e) {
 
     if (operatorSelected === false) {
         tempNumber = tempArray.join('');
-        firstNumber = tempNumber.replace(/[^0-9]/g, "");
+        firstNumber = tempNumber.replace(/[^0-9.]/g, "");
         firstNumber = Number(firstNumber);
     }   else {
         tempNumber = tempArray.join('');
-        secondNumber = tempNumber.replace(/[^0-9]/g, "");
+        secondNumber = tempNumber.replace(/[^0-9.]/g, "");
         secondNumber = Number(secondNumber);
     }
 
