@@ -49,7 +49,7 @@ h3 {
   text-align: right;
   color: rgb(0, 0, 0);
   text-shadow: 1px 1px #a5a5a5;
-  background: rgba(200, 255, 204, 0.678);
+  background: rgba(200, 255, 204);
 }
 
 #container {
@@ -62,7 +62,8 @@ h3 {
   border: 1px solid rgb(0, 0, 0);
   box-shadow: 1px 1px #383838;
   border-radius: 15px;
-  background-image: linear-gradient(rgb(59, 59, 59), rgb(107, 107, 107), rgb(107, 107, 107), rgb(107, 107, 107), rgb(107, 107, 107), rgb(59, 59, 59));
+  background: rgb(102, 102, 102);
+  /* background-image: linear-gradient(rgb(59, 59, 59), rgb(107, 107, 107), rgb(107, 107, 107), rgb(107, 107, 107), rgb(107, 107, 107), rgb(59, 59, 59)); */
   width: 17em;
   height: 20em;
 }
