@@ -75,7 +75,7 @@ function hitKey(e) {
         tempArray.push(secondNumber);
         tempArray.push(result);
         tempNumber = tempArray.join('');
-        firstNumber = tempNumber.replace(/[^0-9]/g, "");
+        firstNumber = tempNumber.replace(/[^0-9.]/g, "");
         firstNumber = Number(firstNumber);
         console.log('result: ', result);
     }
