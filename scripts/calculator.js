@@ -27,23 +27,20 @@ let tempArray = [];
 let firstNumber = 0;
 let secondNumber = 0;
 let result = 0;
-// let operation = 0;
 
 function hitKey(e) {
     let button = e.target;
     let buttonValue = button.innerHTML;
-    let isAdding = false;
-    let isSubtracting = false;
     
     tempArray.push(buttonValue);
 
     displayedNumbersArray.push(buttonValue);
-    let displayNumbers = displayedNumbersArray.join('');
+    displayNumbers = displayedNumbersArray.join('');
     display.innerHTML = displayNumbers;
 
     if (buttonValue === '+') {
         operation = 'isAdding';
-        let tempNumber = tempArray.join('');
+        tempNumber = tempArray.join('');
         firstNumber = tempNumber.replace(/[^0-9]/g, "");
         firstNumber = Number(firstNumber);
         tempArray = [];
@@ -51,7 +48,7 @@ function hitKey(e) {
     }
     if (buttonValue === '-') {
         operation = 'isSubtracting';
-        let tempNumber = tempArray.join('');
+        tempNumber = tempArray.join('');
         firstNumber = tempNumber.replace(/[^0-9]/g, "");
         firstNumber = Number(firstNumber);
         tempArray = [];
@@ -59,7 +56,7 @@ function hitKey(e) {
     }
     if (buttonValue === '×') {
         operation = 'isMultiplying';
-        let tempNumber = tempArray.join('');
+        tempNumber = tempArray.join('');
         firstNumber = tempNumber.replace(/[^0-9]/g, "");
         firstNumber = Number(firstNumber);
         tempArray = [];
@@ -67,7 +64,7 @@ function hitKey(e) {
     }
     if (buttonValue === '÷') {
         operation = 'isDividing';
-        let tempNumber = tempArray.join('');
+        tempNumber = tempArray.join('');
         firstNumber = tempNumber.replace(/[^0-9]/g, "");
         firstNumber = Number(firstNumber);
         tempArray = [];
@@ -91,16 +88,22 @@ function hitKey(e) {
                 tempResult = operate(firstNumber, secondNumber, divide);
                 break;
         }
-        let result = Number(tempResult);
+        result = Number(tempResult);
         display.innerHTML = result;
         tempArray = [];
         displayedNumbersArray = [];
         tempNumber = 0;
     }
+    if (buttonValue === 'CE') {
+        displayNumbers = firstNumber;
+        tempArray = [firstNumber];
+        displayedNumbersArray = [displayNumbers];
+        display.innerHTML = displayNumbers;
+    }
     if (buttonValue === 'C') {
-        display.innerHTML = 0;
         tempArray = [];
         displayedNumbersArray = [];
+        display.innerHTML = 0;
     }
     console.log(buttonValue);
 }
