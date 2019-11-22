@@ -1,17 +1,17 @@
 const add = function(number1, number2) {
-    console.log(number1 + number2);
+    // console.log(number1 + number2);
     return number1 + number2;
 }
 const subtract = function(number1, number2) {
-    console.log(number1 - number2);
+    // console.log(number1 - number2);
     return number1 - number2;
 }
 const multiply = function(number1, number2) {
-    console.log(number1 * number2);
+    // console.log(number1 * number2);
     return number1 * number2;
 }
 const divide = function(number1, number2) {
-    console.log(number1 / number2);
+    // console.log(number1 / number2);
     return number1 / number2;
 }
 const operate = function(number1, number2, functionName) {
@@ -27,6 +27,7 @@ let tempArray = [];
 let firstNumber = 0;
 let secondNumber = 0;
 let result = 0;
+let operatorSelected = false;
 
 function hitKey(e) {
     let button = e.target;
@@ -38,42 +39,20 @@ function hitKey(e) {
     displayNumbers = displayedNumbersArray.join('');
     display.innerHTML = displayNumbers;
 
-    if (buttonValue === '+') {
-        operation = 'isAdding';
+    if (operatorSelected === false) {
         tempNumber = tempArray.join('');
         firstNumber = tempNumber.replace(/[^0-9]/g, "");
         firstNumber = Number(firstNumber);
-        tempArray = [];
-        tempNumber = 0;
-    }
-    if (buttonValue === '-') {
-        operation = 'isSubtracting';
-        tempNumber = tempArray.join('');
-        firstNumber = tempNumber.replace(/[^0-9]/g, "");
-        firstNumber = Number(firstNumber);
-        tempArray = [];
-        tempNumber = 0;
-    }
-    if (buttonValue === '×') {
-        operation = 'isMultiplying';
-        tempNumber = tempArray.join('');
-        firstNumber = tempNumber.replace(/[^0-9]/g, "");
-        firstNumber = Number(firstNumber);
-        tempArray = [];
-        tempNumber = 0;
-    }
-    if (buttonValue === '÷') {
-        operation = 'isDividing';
-        tempNumber = tempArray.join('');
-        firstNumber = tempNumber.replace(/[^0-9]/g, "");
-        firstNumber = Number(firstNumber);
-        tempArray = [];
-        tempNumber = 0;
-    }
-    if (buttonValue === '=') {
+    }   else {
         tempNumber = tempArray.join('');
         secondNumber = tempNumber.replace(/[^0-9]/g, "");
         secondNumber = Number(secondNumber);
+    }
+
+    console.log('firstNumber: ', firstNumber);
+    console.log('secondNumber: ', secondNumber);
+
+    function resultIs() {
         switch (operation) {
             case 'isAdding':
                 tempResult = operate(firstNumber, secondNumber, add); 
@@ -91,12 +70,139 @@ function hitKey(e) {
         result = Number(tempResult);
         display.innerHTML = result;
         tempArray = [];
-        displayedNumbersArray = [];
+        secondNumber = 0;
+        operatorSelected = false;
+        tempArray.push(secondNumber);
+        tempArray.push(result);
+        tempNumber = tempArray.join('');
+        firstNumber = tempNumber.replace(/[^0-9]/g, "");
+        firstNumber = Number(firstNumber);
+        console.log('result: ', result);
+    }
+
+    // function changeSigns() {
+    //     if (displayedNumbersArray.includes('+')) {
+    //         if (buttonValue === '-') {
+    //             displayedNumbersArray.replace('+', '-');
+    //             console.log('Changed + to -');
+    //         }   else if (buttonValue === '×') {
+    //             displayedNumbersArray.replace('+', '×');
+    //         }   else if (buttonValue === '÷') {
+    //             displayedNumbersArray.replace('+', '÷');
+    //         }   else {
+    //             displayedNumbersArray.push('+');
+    //         }
+    //     }
+    //     if (displayedNumbersArray.includes("-")) {
+    //         if (buttonValue === '+') {
+    //             displayedNumbersArray.replace('-', '+');
+    //         }   else if (buttonValue === '×') {
+    //             displayedNumbersArray.replace('-', '×');
+    //         }   else if (buttonValue === '÷') {
+    //             displayedNumbersArray.replace('-', '÷');
+    //         }   else {
+    //             displayedNumbersArray.push('-');
+    //         }   
+    //     }   
+    //     if (displayedNumbersArray.includes("×")) {
+    //         if (buttonValue === '+') {
+    //             displayedNumbersArray.replace('×', '+');
+    //         }   else if (buttonValue === '-') {
+    //             displayedNumbersArray.replace('×', '-');
+    //         }   else if (buttonValue === '÷') {
+    //             displayedNumbersArray.replace('×', '÷');
+    //         }   else {
+    //             displayedNumbersArray.push('×');
+    //         }
+    //     }   
+        
+    //     if (displayedNumbersArray.includes("÷")) {
+    //         if (buttonValue === '+') {
+    //             displayedNumbersArray.replace('÷', '+');
+    //         }   else if (buttonValue === '-') {
+    //             displayedNumbersArray.replace('÷', '-');
+    //         }   else if (buttonValue === '×') {
+    //             displayedNumbersArray.replace('×', '×');
+    //         }   else {
+    //             displayedNumbersArray.push('÷');
+    //         }
+    //     }
+    // }
+
+    if (buttonValue === '+') {
+        if (firstNumber > 0 && secondNumber > 0) {
+            resultIs();
+            tempArray.push(result);
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(result);
+            displayedNumbersArray.push('+');
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }
+        operation = 'isAdding';
+        operatorSelected = true;
+        tempArray = [];
         tempNumber = 0;
     }
+    if (buttonValue === '-') {
+        if (firstNumber > 0 && secondNumber > 0) {
+            resultIs();
+            tempArray.push(result);
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(result);
+            displayedNumbersArray.push('-');
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }
+        if (displayedNumbersArray.includes('+')) {
+            displayedNumbersArray.replace('+', '-');
+        }
+        console.log(typeof displayedNumbersArray);
+        operation = 'isSubtracting';
+        operatorSelected = true;
+        tempArray = [];
+        tempNumber = 0;
+    }
+    if (buttonValue === '×') {
+        if (firstNumber > 0 && secondNumber > 0) {
+            resultIs();
+            tempArray.push(result);
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(result);
+            displayedNumbersArray.push('×');
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }
+        operation = 'isMultiplying';
+        operatorSelected = true;
+        tempArray = [];
+        tempNumber = 0;
+    }
+    if (buttonValue === '÷') {
+        if (firstNumber > 0 && secondNumber > 0) {
+            resultIs();
+            tempArray.push(result);
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(result);
+            displayedNumbersArray.push('÷');
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }
+        operation = 'isDividing';
+        operatorSelected = true;
+        tempArray = [];
+        tempNumber = 0;
+    }
+    if (buttonValue === '=') {
+        resultIs();
+        displayedNumbersArray = [];
+        displayedNumbersArray.push(result);
+        displayNumbers = displayedNumbersArray.join('');
+        display.innerHTML = displayNumbers;
+    }
     if (buttonValue === 'CE') {
+        tempArray = [];
         displayNumbers = firstNumber;
-        tempArray = [firstNumber];
         displayedNumbersArray = [displayNumbers];
         display.innerHTML = displayNumbers;
     }
@@ -104,8 +210,10 @@ function hitKey(e) {
         tempArray = [];
         displayedNumbersArray = [];
         display.innerHTML = 0;
+        firstNumber = 0;
+        secondNumber = 0;
+        result = 0;
     }
-    console.log(buttonValue);
 }
 
 buttonsArray.map((key) => {
