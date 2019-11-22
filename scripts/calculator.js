@@ -119,7 +119,6 @@ function hitKey(e) {
             displayNumbers = displayedNumbersArray.join('');
             display.innerHTML = displayNumbers;
         }
-        console.log(typeof displayedNumbersArray);
         operation = 'isSubtracting';
         operatorSelected = true;
         tempArray = [];
@@ -189,6 +188,29 @@ function hitKey(e) {
         firstNumber = 0;
         secondNumber = 0;
         result = 0;
+    }
+    if (buttonValue === '±') {
+        displayedNumbersArray = [];
+        if (firstNumber > 0 && secondNumber === 0) {
+            tempNumber = tempArray.join('');
+            firstNumber = tempNumber.replace(/[^0-9.]/g, "");
+            firstNumber = Number(firstNumber);
+            firstNumber = -firstNumber;
+            displayedNumbersArray.push(firstNumber);
+            operatorSelected = true;
+        }   else if (secondNumber > 0) {
+            tempNumber = tempArray.join('');
+            secondNumber = tempNumber.replace(/[^0-9.]/g, "");
+            secondNumber = Number(secondNumber);
+            secondNumber = -secondNumber;
+            displayedNumbersArray.push(firstNumber);
+            displayedNumbersArray.push(secondNumber);
+            console.log(displayedNumbersArray);
+            operatorSelected = true;
+        }
+        displayNumbers = displayedNumbersArray.join('');
+        display.innerHTML = displayNumbers;
+        operation = 'isSubtracting';
     }
 }
 
