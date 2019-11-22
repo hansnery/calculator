@@ -27,6 +27,10 @@ h3 {
   background: rgb(51, 51, 51);
 }
 
+.button:active {
+  background: rgb(24, 24, 24);
+}
+
 .operator {
   color: rgb(44, 44, 44);
   background: rgb(204, 204, 204)
@@ -34,6 +38,22 @@ h3 {
 
 .operator:hover {
   background: rgb(226, 226, 226)
+}
+
+.operator:active {
+  background: rgb(134, 134, 134)
+}
+
+#equals {
+  background: rgb(115, 199, 214);
+}
+
+#equals:hover {
+  background: rgb(124, 218, 235);
+}
+
+#equals:active {
+  background: rgb(81, 152, 165);
 }
 
 #display {
@@ -65,14 +85,6 @@ h3 {
   background: rgb(102, 102, 102);
   width: 17em;
   height: 20em;
-}
-
-#equals {
-  background: rgb(115, 199, 214);
-}
-
-#equals:hover {
-  background: rgb(124, 218, 235);
 }
 
 html {
