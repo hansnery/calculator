@@ -2,12 +2,39 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Calculator Project</title>
+  <title>Calculator</title>
+  <link href="css/main.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bitter|Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-  <script>
-    
-  </script>
+  <br></br>
+  <h1>A Simple Calculator</h1>
+  <h2>by Hans Oliveira</h2>
+  <h3>An assignment part of the Odin Project's curriculum</h3>
+  <br></br>
+  <div id="container">
+    <div id="display">0</div>
+    <div class="button operator">CE</div>
+    <div class="button operator">C</div>
+    <div class="button operator">⌫</div>
+    <div class="button operator">÷</div>
+    <div data-key="103" class="button">7</div>
+    <div data-key="104" class="button">8</div>
+    <div data-key="105" class="button">9</div>
+    <div class="button operator">×</div>
+    <div data-key="100" class="button">4</div>
+    <div data-key="101" class="button">5</div>
+    <div data-key="102" class="button">6</div>
+    <div class="button operator">-</div>
+    <div data-key="97" class="button">1</div>
+    <div data-key="98" class="button">2</div>
+    <div data-key="99" class="button">3</div>
+    <div class="button operator" id="plus">+</div>
+    <div class="button special">±</div>
+    <div data-key="96" class="button">0</div>
+    <div class="button special">.</div>
+    <div class="button operator">=</div>
+  </div>
+  <script src="scripts/calculator.js"></script>
 </body>
 </html>
