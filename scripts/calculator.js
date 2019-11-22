@@ -20,7 +20,6 @@ const operate = function(number1, number2, functionName) {
 
 const display = document.getElementById('display');
 const buttons = document.querySelectorAll('.button');
-const plus = document.getElementById('plus');
 const buttonsArray = Array.from(buttons);
 let displayedNumbersArray = [];
 let tempArray = [];
@@ -28,6 +27,7 @@ let firstNumber = 0;
 let secondNumber = 0;
 let result = 0;
 let operatorSelected = false;
+let operation = 0;
 
 function hitKey(e) {
     let button = e.target;
@@ -80,61 +80,19 @@ function hitKey(e) {
         console.log('result: ', result);
     }
 
-    // function changeSigns() {
-    //     if (displayedNumbersArray.includes('+')) {
-    //         if (buttonValue === '-') {
-    //             displayedNumbersArray.replace('+', '-');
-    //             console.log('Changed + to -');
-    //         }   else if (buttonValue === '×') {
-    //             displayedNumbersArray.replace('+', '×');
-    //         }   else if (buttonValue === '÷') {
-    //             displayedNumbersArray.replace('+', '÷');
-    //         }   else {
-    //             displayedNumbersArray.push('+');
-    //         }
-    //     }
-    //     if (displayedNumbersArray.includes("-")) {
-    //         if (buttonValue === '+') {
-    //             displayedNumbersArray.replace('-', '+');
-    //         }   else if (buttonValue === '×') {
-    //             displayedNumbersArray.replace('-', '×');
-    //         }   else if (buttonValue === '÷') {
-    //             displayedNumbersArray.replace('-', '÷');
-    //         }   else {
-    //             displayedNumbersArray.push('-');
-    //         }   
-    //     }   
-    //     if (displayedNumbersArray.includes("×")) {
-    //         if (buttonValue === '+') {
-    //             displayedNumbersArray.replace('×', '+');
-    //         }   else if (buttonValue === '-') {
-    //             displayedNumbersArray.replace('×', '-');
-    //         }   else if (buttonValue === '÷') {
-    //             displayedNumbersArray.replace('×', '÷');
-    //         }   else {
-    //             displayedNumbersArray.push('×');
-    //         }
-    //     }   
-        
-    //     if (displayedNumbersArray.includes("÷")) {
-    //         if (buttonValue === '+') {
-    //             displayedNumbersArray.replace('÷', '+');
-    //         }   else if (buttonValue === '-') {
-    //             displayedNumbersArray.replace('÷', '-');
-    //         }   else if (buttonValue === '×') {
-    //             displayedNumbersArray.replace('×', '×');
-    //         }   else {
-    //             displayedNumbersArray.push('÷');
-    //         }
-    //     }
-    // }
-
     if (buttonValue === '+') {
         if (firstNumber > 0 && secondNumber > 0) {
             resultIs();
             tempArray.push(result);
             displayedNumbersArray = [];
             displayedNumbersArray.push(result);
+            displayedNumbersArray.push('+');
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }
+        if (operation !== 'isAdding') {
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(firstNumber);
             displayedNumbersArray.push('+');
             displayNumbers = displayedNumbersArray.join('');
             display.innerHTML = displayNumbers;
@@ -154,8 +112,12 @@ function hitKey(e) {
             displayNumbers = displayedNumbersArray.join('');
             display.innerHTML = displayNumbers;
         }
-        if (displayedNumbersArray.includes('+')) {
-            displayedNumbersArray.replace('+', '-');
+        if (operation !== 'isSubtracting') {
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(firstNumber);
+            displayedNumbersArray.push('-');
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
         }
         console.log(typeof displayedNumbersArray);
         operation = 'isSubtracting';
@@ -173,6 +135,13 @@ function hitKey(e) {
             displayNumbers = displayedNumbersArray.join('');
             display.innerHTML = displayNumbers;
         }
+        if (operation !== 'isMultiplying') {
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(firstNumber);
+            displayedNumbersArray.push('×');
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }
         operation = 'isMultiplying';
         operatorSelected = true;
         tempArray = [];
@@ -184,6 +153,13 @@ function hitKey(e) {
             tempArray.push(result);
             displayedNumbersArray = [];
             displayedNumbersArray.push(result);
+            displayedNumbersArray.push('÷');
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }
+        if (operation !== 'isDividing') {
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(firstNumber);
             displayedNumbersArray.push('÷');
             displayNumbers = displayedNumbersArray.join('');
             display.innerHTML = displayNumbers;
