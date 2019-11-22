@@ -63,9 +63,16 @@ h3 {
   box-shadow: 1px 1px #383838;
   border-radius: 15px;
   background: rgb(102, 102, 102);
-  /* background-image: linear-gradient(rgb(59, 59, 59), rgb(107, 107, 107), rgb(107, 107, 107), rgb(107, 107, 107), rgb(107, 107, 107), rgb(59, 59, 59)); */
   width: 17em;
   height: 20em;
+}
+
+#equals {
+  background: rgb(115, 199, 214);
+}
+
+#equals:hover {
+  background: rgb(124, 218, 235);
 }
 
 html {
