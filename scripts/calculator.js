@@ -31,8 +31,6 @@ function hitKey(e) {
     let button = e.target;
     let buttonValue = button.innerHTML;
 
-    buttonsUsed = ['96', '97', '98', '99', '100', '101', '102', '103', '104', '105', '107', '109', '106', '111', '110', '13', '27', '46', '8', '120'];
-
     if (e.keyCode == '96') {
         buttonValue = '0';
     }   else if (e.keyCode == '97') {
