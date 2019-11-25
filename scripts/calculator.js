@@ -31,6 +31,56 @@ function hitKey(e) {
     let button = e.target;
     let buttonValue = button.innerHTML;
 
+    buttonsUsed = ['96', '97', '98', '99', '100', '101', '102', '103', '104', '105', '107', '109', '106', '111', '110', '13', '27', '46', '8', '120'];
+
+    if (e.keyCode == '96') {
+        buttonValue = '0';
+    }   else if (e.keyCode == '97') {
+        buttonValue = '1';
+    }   else if (e.keyCode == '98') {
+        buttonValue = '2';
+    }   else if (e.keyCode == '99') {
+        buttonValue = '3';
+    }   else if (e.keyCode == '100') {
+        buttonValue = '4';
+    }   else if (e.keyCode == '101') {
+        buttonValue = '5';
+    }   else if (e.keyCode == '102') {
+        buttonValue = '6';
+    }   else if (e.keyCode == '103') {
+        buttonValue = '7';
+    }   else if (e.keyCode == '104') {
+        buttonValue = '8';
+    }   else if (e.keyCode == '105') {
+        buttonValue = '9';
+    }   else if (e.keyCode == '107') {
+        buttonValue = '+';
+    }   else if (e.keyCode == '109') {
+        buttonValue = '-';
+    }   else if (e.keyCode == '106') {
+        buttonValue = '×';
+    }   else if (e.keyCode == '111') {
+        buttonValue = '÷';
+    }   else if (e.keyCode == '110') {
+        buttonValue = '.';
+    }   else if (e.keyCode == '13') {
+        buttonValue = '=';
+    }   else if (e.keyCode == '27') {
+        buttonValue = 'C';
+    }   else if (e.keyCode == '46') {
+        buttonValue = 'CE';
+    }   else if (e.keyCode == '8') {
+        buttonValue = '⌫';
+    }   else if (e.keyCode == '120') {
+        buttonValue = '±';
+    }   else if (e.keyCode < 8 || e.keyCode > 8 && e.keyCode < 13 ||e.keyCode > 13 && e.keyCode < 27 
+                || e.keyCode > 27 && e.keyCode < 46 || e.keyCode < 96 || e.keyCode > 96 && e.keyCode < 106 
+                || e.keyCode > 106 && e.keyCode < 107 || e.keyCode > 107 && e.keyCode < 109 
+                || e.keyCode > 109 && e.keyCode < 111 || e.keyCode > 111 && e.keyCode < 120
+                || e.keyCode > 120) {
+        return false;
+    }
+
     function countDecimals(value) {
         if (Math.floor(value) !== value)
             return value.toString().split(".")[1].length || 0;
@@ -274,3 +324,5 @@ function hitKey(e) {
 buttonsArray.map((key) => {
     key.addEventListener('click', hitKey);
 });
+
+window.addEventListener('keydown', hitKey);
