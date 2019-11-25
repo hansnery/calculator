@@ -59,7 +59,6 @@ function hitKey(e) {
         result = Number(tempResult);
         resultDecimals = countDecimals(result);
         if (resultDecimals > 12) {
-            console.log('result: ', result);
             result = result.toFixed(10);
         }
         display.innerHTML = result;
@@ -98,12 +97,6 @@ function hitKey(e) {
     if (!Number.isInteger(firstNumber) && !Number.isInteger(secondNumber)) {
         dot.classList.add('blocked');
     }
-
-    // console.log('firstNumber: ', firstNumber);
-    // console.log('secondNumber: ', secondNumber);
-    // console.log('firstNumber length: ' + countDigits(firstNumber));
-    // console.log('secondNumber length: ' + countDigits(secondNumber));
-    // console.log('displayLength: ', displayLength);
 
     if (buttonValue === '+') {
         if (firstNumber > 0 && secondNumber > 0) {
@@ -239,7 +232,6 @@ function hitKey(e) {
             secondNumber = -secondNumber;
             displayedNumbersArray.push(firstNumber);
             displayedNumbersArray.push(secondNumber);
-            console.log(displayedNumbersArray);
             operatorSelected = true;
         }
         displayNumbers = displayedNumbersArray.join('');
@@ -273,8 +265,6 @@ function hitKey(e) {
             secondNumber = tempNumber;
             secondNumber = Number(secondNumber);
         }
-        console.log('displayNumbers: ', displayNumbers);
-        console.log('displayedNumbersArray: ', displayedNumbersArray);
     }
     if (buttonValue === '.') {
         dot.classList.add('blocked');
