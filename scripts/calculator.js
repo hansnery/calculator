@@ -1,17 +1,13 @@
 const add = function(number1, number2) {
-    // console.log(number1 + number2);
     return number1 + number2;
 }
 const subtract = function(number1, number2) {
-    // console.log(number1 - number2);
     return number1 - number2;
 }
 const multiply = function(number1, number2) {
-    // console.log(number1 * number2);
     return number1 * number2;
 }
 const divide = function(number1, number2) {
-    // console.log(number1 / number2);
     return number1 / number2;
 }
 const operate = function(number1, number2, functionName) {
@@ -20,7 +16,9 @@ const operate = function(number1, number2, functionName) {
 
 const display = document.getElementById('display');
 const buttons = document.querySelectorAll('.button');
+const numbers = document.querySelectorAll('.number');
 const buttonsArray = Array.from(buttons);
+const dot = document.getElementById('dot');
 let displayedNumbersArray = [];
 let tempArray = [];
 let firstNumber = 0;
@@ -32,25 +30,16 @@ let operation = 0;
 function hitKey(e) {
     let button = e.target;
     let buttonValue = button.innerHTML;
-    
-    tempArray.push(buttonValue);
 
-    displayedNumbersArray.push(buttonValue);
-    displayNumbers = displayedNumbersArray.join('');
-    display.innerHTML = displayNumbers;
-
-    if (operatorSelected === false) {
-        tempNumber = tempArray.join('');
-        firstNumber = tempNumber.replace(/[^0-9.]/g, "");
-        firstNumber = Number(firstNumber);
-    }   else {
-        tempNumber = tempArray.join('');
-        secondNumber = tempNumber.replace(/[^0-9.]/g, "");
-        secondNumber = Number(secondNumber);
+    function countDecimals(value) {
+        if (Math.floor(value) !== value)
+            return value.toString().split(".")[1].length || 0;
+        return 0;
     }
 
-    console.log('firstNumber: ', firstNumber);
-    console.log('secondNumber: ', secondNumber);
+    function countDigits(value) {
+        return value.toString().length;
+    }
 
     function resultIs() {
         switch (operation) {
@@ -68,6 +57,11 @@ function hitKey(e) {
                 break;
         }
         result = Number(tempResult);
+        resultDecimals = countDecimals(result);
+        if (resultDecimals > 12) {
+            console.log('result: ', result);
+            result = result.toFixed(10);
+        }
         display.innerHTML = result;
         tempArray = [];
         secondNumber = 0;
@@ -77,8 +71,39 @@ function hitKey(e) {
         tempNumber = tempArray.join('');
         firstNumber = tempNumber.replace(/[^0-9.]/g, "");
         firstNumber = Number(firstNumber);
-        console.log('result: ', result);
+        dot.classList.remove('blocked');
     }
+    
+    tempArray.push(buttonValue);
+
+    displayLengthMax = 13;
+    displayLength = countDigits(firstNumber) + countDigits(secondNumber);
+
+    if (displayLength < displayLengthMax) {
+        displayedNumbersArray.push(buttonValue);
+        displayNumbers = displayedNumbersArray.join('');
+        display.innerHTML = displayNumbers;
+        if (operatorSelected === false && countDigits(firstNumber) < displayLengthMax) {
+            tempNumber = tempArray.join('');
+            firstNumber = tempNumber.replace(/[^0-9.]/g, "");
+            firstNumber = Number(firstNumber);
+        }   else if (operatorSelected === true && countDigits(secondNumber) < displayLengthMax) {      
+            tempNumber = tempArray.join('');
+            secondNumber = tempNumber.replace(/[^0-9.]/g, "");
+            secondNumber = Number(secondNumber);
+            dot.classList.remove('blocked');
+        }    
+    }
+
+    if (!Number.isInteger(firstNumber) && !Number.isInteger(secondNumber)) {
+        dot.classList.add('blocked');
+    }
+
+    // console.log('firstNumber: ', firstNumber);
+    // console.log('secondNumber: ', secondNumber);
+    // console.log('firstNumber length: ' + countDigits(firstNumber));
+    // console.log('secondNumber length: ' + countDigits(secondNumber));
+    // console.log('displayLength: ', displayLength);
 
     if (buttonValue === '+') {
         if (firstNumber > 0 && secondNumber > 0) {
@@ -169,11 +194,18 @@ function hitKey(e) {
         tempNumber = 0;
     }
     if (buttonValue === '=') {
-        resultIs();
-        displayedNumbersArray = [];
-        displayedNumbersArray.push(result);
-        displayNumbers = displayedNumbersArray.join('');
-        display.innerHTML = displayNumbers;
+        if (operation === 'isDividing' && secondNumber === 0) {
+            alert('You can\'t divide a number by 0!');
+            displayedNumbersArray.pop();
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }   else {
+            resultIs();
+            displayedNumbersArray = [];
+            displayedNumbersArray.push(result);
+            displayNumbers = displayedNumbersArray.join('');
+            display.innerHTML = displayNumbers;
+        }
     }
     if (buttonValue === 'CE') {
         tempArray = [];
@@ -188,6 +220,8 @@ function hitKey(e) {
         firstNumber = 0;
         secondNumber = 0;
         result = 0;
+        operatorSelected = false;
+        dot.classList.remove('blocked');
     }
     if (buttonValue === '±') {
         displayedNumbersArray = [];
@@ -241,6 +275,9 @@ function hitKey(e) {
         }
         console.log('displayNumbers: ', displayNumbers);
         console.log('displayedNumbersArray: ', displayedNumbersArray);
+    }
+    if (buttonValue === '.') {
+        dot.classList.add('blocked');
     }
 }
 

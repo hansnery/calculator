@@ -44,6 +44,11 @@ h3 {
   background: rgb(134, 134, 134)
 }
 
+.blocked {
+  pointer-events: none;
+  background: rgb(134, 134, 134);
+}
+
 #equals {
   background: rgb(115, 199, 214);
 }
