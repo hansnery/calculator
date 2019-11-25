@@ -212,6 +212,36 @@ function hitKey(e) {
         display.innerHTML = displayNumbers;
         operation = 'isSubtracting';
     }
+    if (buttonValue === '⌫') {
+        displayedNumbersArray = displayNumbers.split('');
+        if (displayedNumbersArray.includes('⌫')){
+            displayedNumbersArray.pop();
+        }
+        displayedNumbersArray.pop();
+        displayNumbers = displayedNumbersArray.join('');
+        display.innerHTML = displayNumbers;
+        if (displayedNumbersArray.includes('+')) {
+            tempIndex = displayNumbers.indexOf('+');    
+        }   else if (displayedNumbersArray.includes('-')) {
+            tempIndex = displayNumbers.indexOf('-');    
+        }   else if (displayedNumbersArray.includes('×')) {
+            tempIndex = displayNumbers.indexOf('×');    
+        }   else if (displayedNumbersArray.includes('÷')) {
+            tempIndex = displayNumbers.indexOf('÷');    
+        }   else {
+            firstNumber = displayNumbers;
+            firstNumber = Number(firstNumber);
+            tempArray = [firstNumber];
+        }
+        if (displayedNumbersArray.includes('+') || displayedNumbersArray.includes('-') || displayedNumbersArray.includes('×') || displayedNumbersArray.includes('÷')) {
+            tempArray = displayedNumbersArray.slice(tempIndex + 1, displayedNumbersArray.length);
+            tempNumber = tempArray.join('');
+            secondNumber = tempNumber;
+            secondNumber = Number(secondNumber);
+        }
+        console.log('displayNumbers: ', displayNumbers);
+        console.log('displayedNumbersArray: ', displayedNumbersArray);
+    }
 }
 
 buttonsArray.map((key) => {
